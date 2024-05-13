@@ -1,4 +1,4 @@
-﻿namespace Perfumes.App;
+﻿namespace Perfumes.App.Liquids;
 
 public enum LiquidType
 {

@@ -1,4 +1,4 @@
-﻿namespace Perfumes.App;
+﻿namespace Perfumes.App.Liquids;
 
 internal abstract class Odorous_Liquids
 {
