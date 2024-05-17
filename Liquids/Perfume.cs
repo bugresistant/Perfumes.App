@@ -1,9 +1,6 @@
 ﻿namespace Perfumes.App.Liquids;
 
-internal class Perfume : OdorousLiquids, LiquidBehavior
-{
-    public Perfume()
-    {
-        
-    }
-}
+//internal class Perfume : OdorousLiquids
+//{
+    
+//}

@@ -2,8 +2,8 @@
 
 internal abstract class OdorousLiquids
 {
-    internal LiquidType specificLiquidType; // add here = LiquidType.Argument
-
+    protected LiquidType specificLiquidType; // add here = LiquidType.Argument
+    
     internal string Name
     {
         get => Name;
@@ -74,7 +74,24 @@ internal abstract class OdorousLiquids
 
     }
     // TODO: recommended price
-
+    internal decimal Price
+    {
+        get => Price;
+        set
+        {
+            decimal defaultPrice = 1m;
+            if (value < 1)
+            {
+                Console.WriteLine($"The price can't be lower than 1, setting the default price {defaultPrice:C} for your product");
+                Price = defaultPrice;
+            }
+            else
+            {
+                Price = value;
+            }
+        }
+    }
+    
     internal virtual string NumberOfAppliesToSkin
     {
         get => NumberOfAppliesToSkin;
@@ -84,20 +101,12 @@ internal abstract class OdorousLiquids
             NumberOfAppliesToSkin = $"Around {numberOfSkinAppliesInt}";
         }
     }
-    internal decimal Price
+
+    internal OdorousLiquids(LiquidType liquidType, string name, string description, uint alcoholPCT, uint essentialOilsContentPCT, decimal price)
     {
-        get => Price;
-        set
-        {
-            if (value < 1)
-            {
-                Console.WriteLine($"The price can't be lower than 1, setting the default price {1:C} for your product");
-                Price = 1m;
-            }
-            else
-            {
-                Price = value;
-            }
-        }
+        specificLiquidType = liquidType; // just a regular enum
+        Name = name; Description = description; // string
+        AlcoholPCT = alcoholPCT; EssentialOilsContentPCT = essentialOilsContentPCT;// uint
+        Price = price; // decimal
     }
 }
