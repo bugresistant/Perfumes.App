@@ -1,110 +1,115 @@
 ﻿namespace Perfumes.App.Liquids;
 
 internal abstract class OdorousLiquids
-{
-    protected LiquidType specificLiquidType; // add here = LiquidType.Argument
+{ 
+    protected string name, description, numberOfAppliesToSkin;
+    protected uint alcoholPCT, essentialOilsContentPCT, persistenceTimeInHours;
+    protected decimal price;
     
-    internal string Name
+    
+    private LiquidType SpecificLiquidType { get; init; }
+    
+    public string Name
     {
-        get => Name;
-        set
-        {
-            Name = value.Length > 24 ? value[..24] : value;
-        }
+        get => name;
+        init => name = value.Length > 24 ? value[..24] : value;
     }
 
-    internal string Description
+     string Description
     {
-        get => Description;
-        set
-        {
-            Description = value.Length > 200 ? value[..200] : value;
-        }
+        get => description;
+        init => description = value.Length > 200 ? value[..200] : value;
     }
-    internal uint AlcoholPCT
+    public uint AlcoholPCT // Alcohol by volume
     {
-        get => AlcoholPCT;
-        set
+        get => alcoholPCT;
+        init
         {
             //Probably it could be replaced by try/catch block, but it works fine 
             const uint DefaultAlcoholPCT = 60, MaxPCT = 95;
             if (value > MaxPCT)
             {
                 Console.WriteLine($"Error, you can't specify value greater than {MaxPCT:P} (unless you want to produce moonshine) " +
-                                  $"setting value by default for perfume ({DefaultAlcoholPCT:P})");
-                AlcoholPCT = DefaultAlcoholPCT;
+                                  $"setting value by default for {SpecificLiquidType.ToString()} ({DefaultAlcoholPCT:P})");
+                alcoholPCT = DefaultAlcoholPCT;
             }
             else
             {
-                AlcoholPCT = value;
+                alcoholPCT = value;
             }
         } 
     }
 
-    internal uint EssentialOilsContentPCT
+    public uint EssentialOilsContentPCT
     {
-        get => EssentialOilsContentPCT;
-        set
+        get => essentialOilsContentPCT;
+        init
         {
             const uint DefaultEssentialOilsContentPCT = 22, MaxContentValue = 30;
             if (value > MaxContentValue)
             {
-                string specificLiquidTypeAsString = specificLiquidType.ToString();
                 Console.WriteLine($"Error, you can't specify value greater than {MaxContentValue:P} (unless you want to make people around " +
-                                  $"you to suffocate) setting value by default for {specificLiquidTypeAsString:P} ({DefaultEssentialOilsContentPCT})");
-                EssentialOilsContentPCT = DefaultEssentialOilsContentPCT;
+                                  $"you to suffocate) setting value by default for {SpecificLiquidType.ToString():P} ({DefaultEssentialOilsContentPCT})");
+                essentialOilsContentPCT = DefaultEssentialOilsContentPCT;
             }
             else
             {
-                EssentialOilsContentPCT = value;
+                essentialOilsContentPCT = value;
             }
         } 
     }
     
-    internal uint PersistenceTimeInHours
+    public uint PersistenceTimeInHours
     {
         
-        get => PersistenceTimeInHours;
+        get => persistenceTimeInHours;
         // Secret formula for counting how persistant scent will be that every single perfume brand hides from you
-        set
-        {
-            uint result = (EssentialOilsContentPCT / 10) + (AlcoholPCT / 100 * 2);
-            PersistenceTimeInHours = result;
-        }
-
+        protected init => persistenceTimeInHours = (EssentialOilsContentPCT / 10) + (AlcoholPCT / 100 * 2);
     }
     // TODO: recommended price
-    internal decimal Price
+    public decimal Price
     {
-        get => Price;
-        set
+        get => price;
+        init
         {
             decimal defaultPrice = 1m;
             if (value < 1)
             {
                 Console.WriteLine($"The price can't be lower than 1, setting the default price {defaultPrice:C} for your product");
-                Price = defaultPrice;
+                price = defaultPrice;
             }
             else
             {
-                Price = value;
+                price = value;
             }
         }
     }
     
-    internal virtual string NumberOfAppliesToSkin
+    public virtual string NumberOfAppliesToSkin
     {
-        get => NumberOfAppliesToSkin;
-        set
+        get => $"around {numberOfAppliesToSkin} times";
+        protected init
         {
             uint numberOfSkinAppliesInt = EssentialOilsContentPCT * 10 + AlcoholPCT * 3;
-            NumberOfAppliesToSkin = $"Around {numberOfSkinAppliesInt}";
+            numberOfAppliesToSkin = Convert.ToString(numberOfAppliesToSkin);
         }
     }
 
-    internal OdorousLiquids(LiquidType liquidType, string name, string description, uint alcoholPCT, uint essentialOilsContentPCT, decimal price)
+    public void DisplayInfo()
     {
-        specificLiquidType = liquidType; // just a regular enum
+        Console.WriteLine($"Type of the liquid: {SpecificLiquidType.ToString()}" +
+                           $"\nName of the liquid: {Name}" +
+                           $"\nDescription of the liquid: {Description}" +
+                           $"\nAlcohol by volume: {AlcoholPCT:P}" +
+                           $"\nEssential oils content: {EssentialOilsContentPCT:P}" +
+                           $"\nAverage effect duration in hours: {PersistenceTimeInHours}" +
+                           $"\nCurrent price: {Price:C}" +
+                           $"\nMaximal capacity (in uses): {NumberOfAppliesToSkin}");
+    }
+
+    public OdorousLiquids(LiquidType liquidType, string name, string description, uint alcoholPCT, uint essentialOilsContentPCT, decimal price)
+    {
+        SpecificLiquidType = liquidType; // just a regular enum
         Name = name; Description = description; // string
         AlcoholPCT = alcoholPCT; EssentialOilsContentPCT = essentialOilsContentPCT;// uint
         Price = price; // decimal

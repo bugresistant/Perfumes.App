@@ -7,6 +7,12 @@ List<OdorousLiquids> liquids = new()
     // new Perfume ...
     // new Fragrance ...
 };
+
+foreach (var liquid in liquids)
+{
+    
+    //liquid.DisplayInfo();
+}
     
 
 
