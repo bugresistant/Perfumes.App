@@ -5,12 +5,12 @@ namespace Perfumes.App.Liquids;
 internal class AirFreshenerLiquid(
     string name,
     string description,
-    uint alcoholPCT,
-    uint essentialOilsContentPCT,
+    uint alcoholPCT, uint maxAlcoholPCT,
+    uint essentialOilsContentPCT, uint maxEssentialOilContentPCT,
     decimal price)
-    : OdorousLiquids(LiquidType.AirFreshenerLiquid, name, description, alcoholPCT, essentialOilsContentPCT, price)
+    : OdorousLiquids(LiquidType.AirFreshenerLiquid, name, description, alcoholPCT, maxAlcoholPCT, essentialOilsContentPCT, maxEssentialOilContentPCT, price)
 {
-    public override string NumberOfAppliesToSkin 
+    protected override uint NumberOfAppliesToSkin 
     {
         get
         {
