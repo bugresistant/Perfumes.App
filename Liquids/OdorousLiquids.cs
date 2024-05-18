@@ -18,14 +18,14 @@ public abstract class OdorousLiquids
         init => name = value.Length > 24 ? value[..24] : value;
     }
 
-     string Description
+    private string Description
     {
         get => description;
         init => description = value.Length > 200 ? value[..200] : value;
     }
 
 
-    private uint DefaultAlcoholPCT { get; set; }
+    private uint DefaultAlcoholPCT { get; init; }
     protected virtual uint MaxAlcoholPCT
     {
         get => maxAlcoholPCT;
@@ -37,7 +37,6 @@ public abstract class OdorousLiquids
         get => alcoholPCT;
         init
         {
-            //Probably it could be replaced by try/catch block, but it works fine 
             if (value > MaxAlcoholPCT)
             {
                 Console.WriteLine($"Error, you can't specify value greater than {MaxAlcoholPCT}%, setting value by default for {SpecificLiquidType.ToString()}% is being triggered ({DefaultAlcoholPCT}%)");
@@ -51,7 +50,7 @@ public abstract class OdorousLiquids
     }
 
 
-    private uint DefaultEssentialOilsContentPCT { get; set; }
+    private uint DefaultEssentialOilsContentPCT { get; init; }
 
     private uint MaxEssentialOilsContentPCT
     {
@@ -104,13 +103,13 @@ public abstract class OdorousLiquids
     }
 
     // Secret formula for counting how persistent scent will be that every single perfume brand hides from you
-    private uint CalculatePersistenceTime()
+    public uint CalculatePersistenceTime()
     {
         return (MaxAlcoholPCT + AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT) / 100;
     }
     
     // Another magic formula over here
-    private uint CalculateNumberOfAppliesToSkin()
+    public uint CalculateNumberOfAppliesToSkin()
     {
         
         return ((MaxAlcoholPCT * AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT) / 10);
