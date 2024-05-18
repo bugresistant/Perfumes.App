@@ -18,7 +18,7 @@ public abstract class OdorousLiquids
         init => name = value.Length > 24 ? value[..24] : value;
     }
 
-     string Description
+    private string Description
     {
         get => description;
         init => description = value.Length > 200 ? value[..200] : value;
@@ -104,13 +104,13 @@ public abstract class OdorousLiquids
     }
 
     // Secret formula for counting how persistent scent will be that every single perfume brand hides from you
-    private uint CalculatePersistenceTime()
+    public uint CalculatePersistenceTime()
     {
         return (MaxAlcoholPCT + AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT) / 100;
     }
     
     // Another magic formula over here
-    private uint CalculateNumberOfAppliesToSkin()
+    public uint CalculateNumberOfAppliesToSkin()
     {
         
         return ((MaxAlcoholPCT * AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT) / 10);
