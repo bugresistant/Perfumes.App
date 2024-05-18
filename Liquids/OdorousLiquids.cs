@@ -52,7 +52,8 @@ internal abstract class OdorousLiquids
 
 
     private uint DefaultEssentialOilsContentPCT { get; set; }
-    protected virtual uint MaxEssentialOilsContentPCT
+
+    private uint MaxEssentialOilsContentPCT
     {
         get => maxEssentialOilContentPCT;
         init => maxEssentialOilContentPCT = value > 100 ? 100 : value;
@@ -75,7 +76,7 @@ internal abstract class OdorousLiquids
         } 
     }
 
-    private uint PersistenceTimeInHours { get { return CalculatePersistenceTime(); } }
+    private uint PersistenceTimeInHours => CalculatePersistenceTime();
 
     // TODO: recommended price
     private decimal Price
@@ -112,7 +113,7 @@ internal abstract class OdorousLiquids
     private uint CalculateNumberOfAppliesToSkin()
     {
         
-        return (uint)((MaxAlcoholPCT * AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT)/10);
+        return ((MaxAlcoholPCT * AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT)/10);
     }
 
     public void DisplayInfo()
@@ -124,7 +125,8 @@ internal abstract class OdorousLiquids
                            $"\nEssential oils content: {EssentialOilsContentPCT}%" +
                            $"\nAverage effect duration in hours: {PersistenceTimeInHours}" +
                            $"\nCurrent price: {Price:C}" +
-                           $"\nMaximal capacity (in uses): around {NumberOfAppliesToSkin}");
+                           $"\nMaximal capacity (in uses): around {NumberOfAppliesToSkin}" +
+                           $"\n\n\n");
     }
 
     protected OdorousLiquids(LiquidType liquidType, string name, string description, uint alcoholPCT, uint maxAlcoholPCT, uint essentialOilsContentPCT, uint maxEssentialOilsContentPCT, decimal price)
@@ -139,6 +141,5 @@ internal abstract class OdorousLiquids
         EssentialOilsContentPCT = essentialOilsContentPCT;
         NumberOfAppliesToSkin = numberOfAppliesToSkin;
         Price = price;
-
     }
 }

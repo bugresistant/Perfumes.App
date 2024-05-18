@@ -4,6 +4,5 @@ public enum LiquidType
 {
     Perfume,
     Cologne,
-    ToiletWater,
     AirFreshenerLiquid
 }

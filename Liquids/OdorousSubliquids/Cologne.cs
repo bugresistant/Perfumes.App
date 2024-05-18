@@ -1,6 +1,6 @@
 ﻿namespace Perfumes.App.Liquids;
 
-internal class Perfume(
+internal class Cologne(
     string name,
     string description,
     uint alcoholPCT,
@@ -8,7 +8,7 @@ internal class Perfume(
     uint essentialOilsContentPCT,
     uint maxEssentialOilsContentPCT,
     decimal price)
-    : OdorousLiquids(LiquidType.Perfume, name, description, alcoholPCT, maxAlcoholPCT, essentialOilsContentPCT,
+    : OdorousLiquids(LiquidType.Cologne, name, description, alcoholPCT, maxAlcoholPCT, essentialOilsContentPCT,
         maxEssentialOilsContentPCT, price)
 {
 }

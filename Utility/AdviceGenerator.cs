@@ -11,13 +11,12 @@ public static class AdviceGenerator
         "Maybe you should take a shower instead of trying to cover up your odor with perfume...",
         "Don't worry about it, cuz it smells not that bad, perhaps.",
         "Next time try to add something that not stinks.",
-        "It's like vodka, but odoriferous, right?",
         "***ADVICE IS IN CONSTRUCTION, COME BACK LATER***."
     };
     public static void GiveRandomAdvice() 
     {
-        Console.WriteLine("\n\n\nA piece of advice for today:");
+        Console.WriteLine("\nA piece of advice for today:");
         int adviceIndex = random.Next(advices.Length-1); 
-        Console.WriteLine(advices[adviceIndex]);
+        Console.WriteLine(advices[adviceIndex] + '\n');
     }
 }
