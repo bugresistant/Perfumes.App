@@ -1,6 +1,6 @@
 ﻿namespace Perfumes.App.Liquids;
 
-internal abstract class OdorousLiquids
+public abstract class OdorousLiquids
 { 
     protected string name, description;
     protected uint alcoholPCT, maxAlcoholPCT,
@@ -102,8 +102,8 @@ internal abstract class OdorousLiquids
         get => numberOfAppliesToSkin;
         init => numberOfAppliesToSkin = CalculateNumberOfAppliesToSkin();
     }
-    
-    // Secret formula with a couple of magic numbers for counting how persistent scent will be that every single perfume brand hides from you
+
+    // Secret formula for counting how persistent scent will be that every single perfume brand hides from you
     private uint CalculatePersistenceTime()
     {
         return (MaxAlcoholPCT + AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT) / 100;
@@ -113,7 +113,7 @@ internal abstract class OdorousLiquids
     private uint CalculateNumberOfAppliesToSkin()
     {
         
-        return ((MaxAlcoholPCT * AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT)/10);
+        return ((MaxAlcoholPCT * AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT) / 10);
     }
 
     public void DisplayInfo()
@@ -132,12 +132,13 @@ internal abstract class OdorousLiquids
     protected OdorousLiquids(LiquidType liquidType, string name, string description, uint alcoholPCT, uint maxAlcoholPCT, uint essentialOilsContentPCT, uint maxEssentialOilsContentPCT, decimal price)
     {
         SpecificLiquidType = liquidType;
-        Name = name; Description = description;
+        Name = name; 
+        Description = description;
         MaxAlcoholPCT = maxAlcoholPCT;
-        DefaultAlcoholPCT = 30;
+        DefaultAlcoholPCT = 30; // just a random constant
         AlcoholPCT = alcoholPCT;
         MaxEssentialOilsContentPCT = maxEssentialOilsContentPCT;
-        DefaultEssentialOilsContentPCT = 10;
+        DefaultEssentialOilsContentPCT = 10; // just a random constant x2
         EssentialOilsContentPCT = essentialOilsContentPCT;
         NumberOfAppliesToSkin = numberOfAppliesToSkin;
         Price = price;
