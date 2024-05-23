@@ -2,7 +2,7 @@
 
 namespace Perfumes.App.Liquids;
 
-internal class AirFreshenerLiquid(
+public class AirFreshenerLiquid(
     string name,
     string description,
     uint alcoholPCT, uint maxAlcoholPCT,

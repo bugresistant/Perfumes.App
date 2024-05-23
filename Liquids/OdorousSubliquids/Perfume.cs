@@ -1,6 +1,6 @@
 ﻿namespace Perfumes.App.Liquids;
 
-internal class Perfume(
+public class Perfume(
     string name,
     string description,
     uint alcoholPCT,
