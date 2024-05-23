@@ -26,7 +26,8 @@ public abstract class OdorousLiquids
 
 
     private uint DefaultAlcoholPCT { get; init; }
-    protected virtual uint MaxAlcoholPCT
+
+    private uint MaxAlcoholPCT
     {
         get => maxAlcoholPCT;
         init => maxAlcoholPCT = value > 100 ? 100 : value;
@@ -115,7 +116,7 @@ public abstract class OdorousLiquids
         return ((MaxAlcoholPCT * AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT) / 10);
     }
 
-    public void DisplayInfo()
+    public virtual void DisplayInfo()
     {
         Console.WriteLine($"Type of the liquid: {SpecificLiquidType.ToString()}" +
                            $"\nName of the liquid: {Name}" +
