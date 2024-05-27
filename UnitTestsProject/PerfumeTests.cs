@@ -39,4 +39,25 @@ public class PerfumeTests
         Assert.Contains("Don’t rub the wrists together as this can crush the fragrance.", output);
         Assert.Contains("A light spritz is enough – remember, perfume should be discovered, not announced.", output);
     }
+    
+    [Fact]
+    public void CalculateNumberOfAppliesToSkin_ReturnsValueInCorrectRange()
+    {
+        // Arrange 
+        Perfume samplePerfume = new(
+            "Sample Perfume",
+            "Sample Description",
+            10,
+            20,
+            30,
+            40,
+            50
+        );
+        // Act
+        
+        uint numberOfAppliesToSkin = samplePerfume.CalculateNumberOfAppliesToSkin();
+        
+        // Assert
+        Assert.InRange<uint>(numberOfAppliesToSkin, 0, 2400);
+    }
 }

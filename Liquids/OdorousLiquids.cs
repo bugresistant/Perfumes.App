@@ -104,17 +104,17 @@ public abstract class OdorousLiquids
     }
 
     // Secret formula for counting how persistent scent will be that every single perfume brand hides from you
+    // TODO: make methods abstract
     public uint CalculatePersistenceTime()
     {
         return (MaxAlcoholPCT + AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT) / 100;
     }
-    
-    // Another magic formula over here
-    public uint CalculateNumberOfAppliesToSkin()
-    {
+
+    public abstract uint CalculateNumberOfAppliesToSkin();
+    /*{
         
         return ((MaxAlcoholPCT * AlcoholPCT) * (MaxEssentialOilsContentPCT + EssentialOilsContentPCT) / 10);
-    }
+    }*/
 
     public virtual void DisplayInfo()
     {

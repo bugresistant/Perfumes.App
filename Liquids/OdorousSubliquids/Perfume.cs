@@ -25,4 +25,10 @@ public class Perfume(
                           $"A light spritz is enough – remember, perfume should be discovered, not announced.\n");
         Console.ResetColor();
     }
+
+    public override uint CalculateNumberOfAppliesToSkin()
+    {
+        uint numberOfAppliesToSkin = (uint)new Random().Next(2400);
+        return numberOfAppliesToSkin;
+    }
 }

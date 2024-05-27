@@ -26,4 +26,9 @@ public class Cologne(
                           $"Just like with perfume, avoid rubbing it in to preserve the integrity of the fragrances.\n");
         Console.ResetColor();
     }
+    
+    public override uint CalculateNumberOfAppliesToSkin()
+    {
+        return ((maxAlcoholPCT * alcoholPCT) * (maxEssentialOilContentPCT + essentialOilsContentPCT) / 10);
+    }
 }

@@ -19,4 +19,9 @@ public class AirFreshenerLiquid(
             Console.ResetColor();
         } 
     }
+
+    public override uint CalculateNumberOfAppliesToSkin()
+    {
+        return 0;
+    }
 }
